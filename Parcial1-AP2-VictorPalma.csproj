@@ -5,4 +5,8 @@
     <RootNamespace>Parcial1_AP2_VictorPalma</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
