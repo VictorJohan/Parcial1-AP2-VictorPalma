@@ -10,7 +10,9 @@ namespace Parcial1_AP2_VictorPalma.Models
     {
         [Key]
         public int ArticuloId { get; set; }
+        [Required(ErrorMessage ="Es obligatorio ingresar una descripción del articulo")]
         public string Descripcion { get; set; }
+        [Range(minimum:1, maximum:999)]
         public int Existencia { get; set; }
         public double Costo { get; set; }
         public double ValorInventario { get; set; }
