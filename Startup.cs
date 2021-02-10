@@ -6,12 +6,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Parcial1_AP2_VictorPalma.BLL;
 using Parcial1_AP2_VictorPalma.DAL;
 using Parcial1_AP2_VictorPalma.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blazored.Toast;
 
 namespace Parcial1_AP2_VictorPalma
 {
@@ -36,6 +38,12 @@ namespace Parcial1_AP2_VictorPalma
             services.AddDbContext<Contexto>(option => option.UseSqlite(
                 Configuration.GetConnectionString("DefaultConnection")
             ));
+
+            //INYECTAMDO BLL
+            services.AddTransient<ArticulosBLL>();
+
+            //IYECTANDO BLAZORED
+            services.AddBlazoredToast();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
