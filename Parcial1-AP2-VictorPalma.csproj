@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+	  <StartWorkinDirectory>$(MSBuildProjectDirectory)</StartWorkinDirectory>
+	  
     <RootNamespace>Parcial1_AP2_VictorPalma</RootNamespace>
   </PropertyGroup>
 
