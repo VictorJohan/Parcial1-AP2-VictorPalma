@@ -12,7 +12,7 @@ namespace Parcial1_AP2_VictorPalma.Migrations
                 {
                     ArticuloId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Descripcion = table.Column<string>(type: "TEXT", nullable: true),
+                    Descripcion = table.Column<string>(type: "TEXT", nullable: false),
                     Existencia = table.Column<int>(type: "INTEGER", nullable: false),
                     Costo = table.Column<double>(type: "REAL", nullable: false),
                     ValorInventario = table.Column<double>(type: "REAL", nullable: false)

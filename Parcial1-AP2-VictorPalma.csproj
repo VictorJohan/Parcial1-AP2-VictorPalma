@@ -1,19 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-	  <StartWorkinDirectory>$(MSBuildProjectDirectory)</StartWorkinDirectory>
-	  
-    <RootNamespace>Parcial1_AP2_VictorPalma</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<StartWorkinDirectory>$(MSBuildProjectDirectory)</StartWorkinDirectory>
+		
 
-  <ItemGroup>
-    <PackageReference Include="Blazored.toast" Version="3.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="5.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+		<RootNamespace>Parcial1_AP2_VictorPalma</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Blazored.toast" Version="3.1.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="5.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Data\Articulos.db">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 
 </Project>

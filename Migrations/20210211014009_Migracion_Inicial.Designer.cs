@@ -8,7 +8,7 @@ using Parcial1_AP2_VictorPalma.DAL;
 namespace Parcial1_AP2_VictorPalma.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20210210230202_Migracion_Inicial")]
+    [Migration("20210211014009_Migracion_Inicial")]
     partial class Migracion_Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,7 @@ namespace Parcial1_AP2_VictorPalma.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Existencia")

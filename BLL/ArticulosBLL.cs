@@ -11,7 +11,7 @@ namespace Parcial1_AP2_VictorPalma.BLL
 {
     public class ArticulosBLL
     {
-        private Contexto contexto;
+        private Contexto contexto { get; set; }
         public ArticulosBLL(Contexto contexto)
         {
             this.contexto = contexto;
@@ -107,10 +107,10 @@ namespace Parcial1_AP2_VictorPalma.BLL
 
             try
             {
-                var registro = await Buscar(id);
-                if(registro != null)
+                var registro = await contexto.Articulos.FindAsync(id);
+                if (registro != null)
                 {
-                    contexto.Entry(registro).State = EntityState.Deleted;
+                    contexto.Articulos.Remove(registro);
                     ok = await contexto.SaveChangesAsync() > 0;
                 }
             }
