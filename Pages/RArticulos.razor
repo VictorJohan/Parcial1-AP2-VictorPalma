@@ -118,6 +118,7 @@
         if (await articulosBLL.Eliminar(this.ArticuloId))
         {
             toast.ShowSuccess("Eliminado.");
+            Limpiar();
         }
         else
         {
