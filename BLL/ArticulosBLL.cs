@@ -87,7 +87,10 @@ namespace Parcial1_AP2_VictorPalma.BLL
             Articulos articulos;
             try
             {
-                articulos = await contexto.Articulos.FindAsync(id);
+                articulos = await contexto.Articulos
+                    .Where(a => a.ArticuloId == id)
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync();
             }
             catch (Exception)
             {
