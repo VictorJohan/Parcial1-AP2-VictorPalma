@@ -110,7 +110,7 @@ namespace Parcial1_AP2_VictorPalma.BLL
                 var registro = await Buscar(id);
                 if(registro != null)
                 {
-                    contexto.Articulos.Remove(registro);
+                    contexto.Entry(registro).State = EntityState.Deleted;
                     ok = await contexto.SaveChangesAsync() > 0;
                 }
             }
