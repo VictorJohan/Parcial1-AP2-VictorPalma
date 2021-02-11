@@ -34,21 +34,21 @@
                 @*Existencia*@
                 <div class="form-group">
                     <label>Existencia</label>
-                    <InputNumber @bind-Value="articulo.Existencia" class="form-control" />
+                    <InputNumber @bind-Value="articulo.Existencia" class="form-control" @onchange="Calcular"/>
                     <ValidationMessage For="(() => articulo.Existencia)" />
                 </div>
 
                 @*Costo*@
                 <div class="form-group">
                     <label>Costo</label>
-                    <InputNumber @bind-Value="articulo.Costo" class="form-control" />
+                    <InputNumber @bind-Value="articulo.Costo" class="form-control" @onchange="Calcular" />
                     <ValidationMessage For="(() => articulo.Costo)" />
                 </div>
 
                 @*Valor Inventario*@
                 <div class="form-group">
                     <label>Valor Inventario</label>
-                    <InputNumber @bind-Value="articulo.ValorInventario" class="form-control" @onchange="Calcular" readonly />
+                    <InputNumber @bind-Value="articulo.ValorInventario" class="form-control" readonly />
                     <ValidationMessage For="(() => articulo.ValorInventario)" />
                 </div>
 
@@ -56,8 +56,8 @@
 
             <div class="card-footer">
                 <div class="form-group text-center">
-                    <button type="button" class="btn btn-secondary" @onclick="Nuevo">Nuevo</button>
-                    <button type="submit" class="btn btn-success" @onclick="Guardar">Nuevo</button>
+                    <button type="button" class="btn btn-primary" @onclick="Nuevo">Nuevo</button>
+                    <button type="submit" class="btn btn-success">Nuevo</button>
                     <button type="button" class="btn btn-danger" @onclick="Eliminar">Nuevo</button>
                 </div>
             </div>
