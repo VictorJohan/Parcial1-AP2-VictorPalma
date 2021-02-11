@@ -1,0 +1,139 @@
+﻿@page "/Articulos"
+@page "/Articulos/{ArticuloId:int}"
+@inject IToastService toast
+
+<EditForm Model="articulo" OnValidSubmit="Guardar">
+    <div class="card">
+        <div class="card-header">
+            <h3>Registro Articulos</h3>
+        </div>
+        <div class="card-body">
+            <form>
+                @*Articulo Id*@
+                <div class="form-row align-items-center">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Articulo Id</label>
+                            <div class="input-group">
+                                <InputNumber @bind-Value="this.ArticuloId" class="form-control" />
+                                <div class="input-group-append">
+                                    <button type="button" style="z-index:0" class="btn btn-secondary" @onclick="Buscar">Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*Descripcion*@
+                <div class="form-group">
+                    <label>Descripció</label>
+                    <InputText @bind-Value="articulo.Descripcion" class="form-control" />
+                    <ValidationMessage For="(() => articulo.Descripcion)" />
+                </div>
+
+                @*Existencia*@
+                <div class="form-group">
+                    <label>Existencia</label>
+                    <InputNumber @bind-Value="articulo.Existencia" class="form-control" />
+                    <ValidationMessage For="(() => articulo.Existencia)" />
+                </div>
+
+                @*Costo*@
+                <div class="form-group">
+                    <label>Costo</label>
+                    <InputNumber @bind-Value="articulo.Costo" class="form-control" />
+                    <ValidationMessage For="(() => articulo.Costo)" />
+                </div>
+
+                @*Valor Inventario*@
+                <div class="form-group">
+                    <label>Valor Inventario</label>
+                    <InputNumber @bind-Value="articulo.ValorInventario" class="form-control" @onchange="Calcular" readonly />
+                    <ValidationMessage For="(() => articulo.ValorInventario)" />
+                </div>
+
+            </form>
+
+            <div class="card-footer">
+                <div class="form-group text-center">
+                    <button type="button" class="btn btn-secondary" @onclick="Nuevo">Nuevo</button>
+                    <button type="submit" class="btn btn-success" @onclick="Guardar">Nuevo</button>
+                    <button type="button" class="btn btn-danger" @onclick="Eliminar">Nuevo</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</EditForm>
+
+
+@code {
+    [Inject]
+    public ArticulosBLL articulosBLL { get; set; }
+
+    [Parameter]
+    public int ArticuloId { get; set; }
+
+    private Articulos articulo = new Articulos();
+
+    protected override void OnInitialized()
+    {
+        Limpiar();
+    }
+
+    private void Nuevo()
+    {
+        Limpiar();
+    }
+
+    private async void Buscar()
+    {
+        var registro = await articulosBLL.Buscar(this.ArticuloId);
+        if (registro != null)
+        {
+            this.articulo = registro;
+        }
+        else
+        {
+            toast.ShowInfo("No se encontro el registro deseado");
+        }
+    }
+
+    private async void Guardar()
+    {
+        articulo.ArticuloId = this.ArticuloId;
+        if (!await articulosBLL.Guardar(articulo))
+        {
+            toast.ShowSuccess("Guardado.");
+            Limpiar();
+        }
+        else
+        {
+            toast.ShowSuccess("No se logro guardar el registro.");
+        }
+    }
+
+    private async void Eliminar()
+    {
+        if (!await articulosBLL.Eliminar(this.ArticuloId))
+        {
+            toast.ShowSuccess("Eliminado.");
+        }
+        else
+        {
+            toast.ShowSuccess("No se logro eliminar el registro.");
+        }
+    }
+
+
+    private void Calcular()
+    {
+        articulo.ValorInventario = articulo.Costo * articulo.Existencia;
+    }
+
+    private void Limpiar()
+    {
+        this.articulo = new Articulos();
+        this.ArticuloId = 0;
+    }
+}
